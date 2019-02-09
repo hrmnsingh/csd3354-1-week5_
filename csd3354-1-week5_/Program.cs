@@ -1,4 +1,4 @@
-﻿class Node
+﻿class Department
 
 
 
@@ -6,19 +6,40 @@
 
 
 
-    public Node() { }
+    public Department(string dept_name)
 
 
 
-    public Node floor;
+    {
 
 
 
-    public Node elevatorUp;
+        public Department(string dept_name)
+        {
 
 
 
-    public string FloorNumber;
+            DepartmentDescription = dept_name;
+
+
+
+        }
+
+
+
+        public Department aDepartment;
+
+
+
+    public Department nextDepartment;
+
+
+
+    public Department previousDepartment;
+
+
+
+    public string DepartmentDescription;
 
 
 
@@ -30,7 +51,7 @@
 
 
 
-class Department
+class DepartmentStore
 
 
 
@@ -38,7 +59,23 @@ class Department
 
 
 
-    public Department aDepartment;
+    public void InitializeDepartments()
+
+
+
+    {
+
+
+
+        Department Kitchenware = new Department("Kitchenware");
+
+
+
+        Department Books = new Department("Books");
+
+
+
+        Department Kitchenware = new Department("Kitchenware");
 
 
 
@@ -46,7 +83,15 @@ class Department
 
 
 
-}
+        Kitchenware.nextDepartment = Books;
+
+
+
+        Kitchenware.previousDepartment = FirstFloor;
+
+
+
+        Department Books = new Department("Books");
 
 
 
@@ -54,14 +99,145 @@ class Department
 
 
 
-class Elevator
+    }
+
+@@ -42,11 +46,11 @@ public void InitializeDepartments()
 
 
 
-{
 
 
-@@ -51,13 +56,12 @@ public void TraverseList()
+
+
+    class Elevator
+
+
+
+    {
+
+
+
+        Node Head;
+
+
+
+        Node FirstFloor;
+
+
+
+        Node SecondFloor;
+
+
+
+        Node ThirdFloor;
+
+
+
+        Node FourthFloor;
+
+
+
+        public static Node Head;
+
+
+
+        public static Node FirstFloor;
+
+
+
+        public static Node SecondFloor;
+
+
+
+        public static Node ThirdFloor;
+
+
+
+        public static Node FourthFloor;
+
+
+
+
+
+
+
+        public void setup()
+
+
+
+        {
+
+
+
+            FirstFloor = new Node();
+
+
+
+            SecondFloor = new Node();
+
+
+
+            ThirdFloor = new Node();
+
+
+
+            FourthFloor = new Node();
+
+
+
+            Head = FirstFloor;
+
+
+
+            FirstFloor.FloorNumber = "First Floor";
+
+
+
+            FirstFloor.elevatorUp = SecondFloor;
+
+
+
+            SecondFloor.FloorNumber = "Second Floor";
+
+
+
+            SecondFloor.elevatorUp = ThirdFloor;
+
+
+
+            ThirdFloor.FloorNumber = "Third Floor";
+
+
+
+            ThirdFloor.elevatorUp = FourthFloor;
+
+
+
+            FourthFloor.FloorNumber = "Fourth Floor";
+
+
+
+            FourthFloor.elevatorUp = null;
+
+
+
+        }
+
+
+
+
+
+
+
+        public void TraverseList()
+
+
+
+        {
+
+
+
+            Node temp;
 
 
 
@@ -77,10 +253,6 @@ class Elevator
 
 
 
-            Console.WriteLine("The first floor is " + Head.FloorNumber);
-
-
-
 
 
 
@@ -93,19 +265,7 @@ class Elevator
 
 
 
-                // NOW GET TO THE SECOND FLOOR!!!!
-
-
-
-                temp = temp.elevatorUp;
-
-
-
                 Console.WriteLine(temp.FloorNumber);
-
-
-
-
 
 
 
